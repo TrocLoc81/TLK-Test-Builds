@@ -21,9 +21,9 @@ jobs:
       U1_VERSIONED_APK: downloads/TLK-U1-PoC-003.apk
       U1_STABLE_APK: TLK-U1-latest-debug.apk
       U1_SHA256: dee3c32066e9ec4fa6282b5e6d7c978877f12aaa49485f4b81798cb109c0ebd5
-      PHONE_VERSIONED_APK: downloads/TLK-Phone-PoC-002.apk
+      PHONE_VERSIONED_APK: downloads/TLK-Phone-PoC-003.apk
       PHONE_STABLE_APK: TLK-Phone-latest-debug.apk
-      PHONE_SHA256: 8f51ecc3439f03549cbeb9412bd1b89e2a7602a00f7761f94e51544f2581caeb
+      PHONE_SHA256: 358fa399972ac8ab861ee1ff5afa03ed69d702922376b08941f54b76416f2b0d
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -50,7 +50,14 @@ jobs:
           )
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "${ASSETS[@]}" --clobber
-            gh release edit "$TAG"               --title "TLK latest test builds"               --notes-file RELEASE_NOTES.md               --prerelease
+            gh release edit "$TAG" \
+              --title "TLK latest test builds" \
+              --notes-file RELEASE_NOTES.md \
+              --prerelease
           else
-            gh release create "$TAG" "${ASSETS[@]}"               --target "$GITHUB_SHA"               --title "TLK latest test builds"               --notes-file RELEASE_NOTES.md               --prerelease
+            gh release create "$TAG" "${ASSETS[@]}" \
+              --target "$GITHUB_SHA" \
+              --title "TLK latest test builds" \
+              --notes-file RELEASE_NOTES.md \
+              --prerelease
           fi

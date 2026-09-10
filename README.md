@@ -16,14 +16,16 @@ Public distribution repository for TLK technical-feasibility APKs.
 
 ### Samsung S23 Ultra / Android phone
 
-**TLK-Phone-PoC-002** — Phone regression build after physical PoC feedback.
+**TLK-Phone-PoC-003** — automatic readiness probe and one-shot Share → TLK send.
 
 [Short download link for phone](https://trocloc81.github.io/TLK-Test-Builds/p/)
 
-- Persists U1 IP and port across app reopen and Share → TLK.
-- Places READ CLIPBOARD / SEND TO U1 / CLEAR above the payload editor.
-- Version: `0.0.2` (versionCode 2)
-- Built: `2026-09-10T13:04:02Z`
-- SHA-256: `8f51ecc3439f03549cbeb9412bd1b89e2a7602a00f7761f94e51544f2581caeb`
+- Normal app open probes the saved U1 endpoint without sending retained text.
+- Share → TLK sends once when U1 is READY.
+- Failure / NO_ACTIVE_EDITOR retains the payload with no automatic retry or future insertion.
+- Manual clipboard and SEND TO U1 flows remain available.
+- Version: `0.0.3` (versionCode 3)
+- Built: `2026-09-10T13:35:32Z`
+- SHA-256: `358fa399972ac8ab861ee1ff5afa03ed69d702922376b08941f54b76416f2b0d`
 
 These are technical-feasibility builds, not production releases.
