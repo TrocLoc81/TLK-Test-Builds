@@ -18,26 +18,39 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TAG: tlk-test-latest
-      VERSIONED_APK: downloads/TLK-U1-PoC-003.apk
-      STABLE_APK: TLK-U1-latest-debug.apk
-      EXPECTED_SHA256: dee3c32066e9ec4fa6282b5e6d7c978877f12aaa49485f4b81798cb109c0ebd5
+      U1_VERSIONED_APK: downloads/TLK-U1-PoC-003.apk
+      U1_STABLE_APK: TLK-U1-latest-debug.apk
+      U1_SHA256: dee3c32066e9ec4fa6282b5e6d7c978877f12aaa49485f4b81798cb109c0ebd5
+      PHONE_VERSIONED_APK: downloads/TLK-Phone-PoC-001.apk
+      PHONE_STABLE_APK: TLK-Phone-latest-debug.apk
+      PHONE_SHA256: 03adff6f2a0e18931ab4aabe7404e349256ea59b77e5cfda45ceb0510cd04e05
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Verify APK
-        run: echo "$EXPECTED_SHA256  $VERSIONED_APK" | sha256sum --check -
+      - name: Verify APKs
+        run: |
+          echo "$U1_SHA256  $U1_VERSIONED_APK" | sha256sum --check -
+          echo "$PHONE_SHA256  $PHONE_VERSIONED_APK" | sha256sum --check -
 
-      - name: Prepare stable filename
-        run: cp "$VERSIONED_APK" "$STABLE_APK"
+      - name: Prepare stable filenames
+        run: |
+          cp "$U1_VERSIONED_APK" "$U1_STABLE_APK"
+          cp "$PHONE_VERSIONED_APK" "$PHONE_STABLE_APK"
 
       - name: Create or update rolling test release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          ASSETS=(
+            "$U1_VERSIONED_APK"
+            "$U1_STABLE_APK"
+            "$PHONE_VERSIONED_APK"
+            "$PHONE_STABLE_APK"
+          )
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$VERSIONED_APK" "$STABLE_APK" --clobber
-            gh release edit "$TAG"               --title "TLK latest test build"               --notes-file RELEASE_NOTES.md               --prerelease
+            gh release upload "$TAG" "${ASSETS[@]}" --clobber
+            gh release edit "$TAG"               --title "TLK latest test builds"               --notes-file RELEASE_NOTES.md               --prerelease
           else
-            gh release create "$TAG" "$VERSIONED_APK" "$STABLE_APK"               --target "$GITHUB_SHA"               --title "TLK latest test build"               --notes-file RELEASE_NOTES.md               --prerelease
+            gh release create "$TAG" "${ASSETS[@]}"               --target "$GITHUB_SHA"               --title "TLK latest test builds"               --notes-file RELEASE_NOTES.md               --prerelease
           fi

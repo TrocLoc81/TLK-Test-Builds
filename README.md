@@ -2,30 +2,33 @@
 
 Public distribution repository for TLK technical-feasibility APKs.
 
-## Current U1 build
+## Current builds
 
-**TLK-U1-PoC-003** — recovery build for regression `U1-IME-002`.
+### Dangbei U1
 
-- Version: `0.0.3` (versionCode 3)
-- Build timestamp: `2026-09-10T05:35:06Z`
-- SHA-256: `dee3c32066e9ec4fa6282b5e6d7c978877f12aaa49485f4b81798cb109c0ebd5`
-- Purpose: restore the local U1 keyboard after PoC 002 startup regression; keep LAN initialization isolated from the core IME lifecycle.
-
-### Direct download
+**TLK-U1-PoC-003** — recovery build for the PoC 002 IME startup regression.
 
 [Download latest TLK U1 debug APK](https://github.com/TrocLoc81/TLK-Test-Builds/releases/download/tlk-test-latest/TLK-U1-latest-debug.apk)
 
-Versioned asset:
+- Version: `0.0.3` (versionCode 3)
+- Built: `2026-09-10T05:35:06Z`
+- SHA-256: `dee3c32066e9ec4fa6282b5e6d7c978877f12aaa49485f4b81798cb109c0ebd5`
 
-[Download TLK-U1-PoC-003.apk](https://github.com/TrocLoc81/TLK-Test-Builds/releases/download/tlk-test-latest/TLK-U1-PoC-003.apk)
+### Samsung S23 Ultra / Android phone
 
-## Install and recovery test
+**TLK-Phone-PoC-001** — foreground LAN sender with editable text, clipboard read, Send and Android Sharesheet support.
 
-1. Preserve the current PoC 002 failure state until any requested observations are recorded.
-2. Install PoC 003 directly over PoC 002; do not uninstall, clear data, disable TLK, or change the selected IME.
-3. Open a normal text editor and record whether TLK appears immediately.
-4. If TLK does not appear, reboot once and test again.
-5. Verify local keys, `TLK TEST`, Backspace, Space, and Enter.
-6. Report whether Settings still lists TLK as the selected keyboard and whether the IP/status label appears.
+[Download latest TLK Phone debug APK](https://github.com/TrocLoc81/TLK-Test-Builds/releases/download/tlk-test-latest/TLK-Phone-latest-debug.apk)
 
-Do not continue Phone ↔ U1 testing until the local IME is restored.
+- Version: `0.0.1` (versionCode 1)
+- Built as part of milestone: `2026-09-10T05:35:06Z`
+- SHA-256: `03adff6f2a0e18931ab4aabe7404e349256ea59b77e5cfda45ceb0510cd04e05`
+
+## Test order
+
+1. Install U1 PoC 003 directly over PoC 002 without uninstalling, clearing data, disabling TLK, or changing the selected IME.
+2. Confirm the local U1 keyboard appears and local keys work.
+3. Only after the local/offline gate passes, install the Phone PoC and begin LAN testing.
+4. If U1 is not ready, keep the payload on the phone and resend manually after refocusing the editor.
+
+These are technical-feasibility builds, not production releases.
