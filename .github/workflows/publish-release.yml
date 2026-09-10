@@ -21,9 +21,9 @@ jobs:
       U1_VERSIONED_APK: downloads/TLK-U1-PoC-003.apk
       U1_STABLE_APK: TLK-U1-latest-debug.apk
       U1_SHA256: dee3c32066e9ec4fa6282b5e6d7c978877f12aaa49485f4b81798cb109c0ebd5
-      PHONE_VERSIONED_APK: downloads/TLK-Phone-PoC-001.apk
+      PHONE_VERSIONED_APK: downloads/TLK-Phone-PoC-002.apk
       PHONE_STABLE_APK: TLK-Phone-latest-debug.apk
-      PHONE_SHA256: 03adff6f2a0e18931ab4aabe7404e349256ea59b77e5cfda45ceb0510cd04e05
+      PHONE_SHA256: 8f51ecc3439f03549cbeb9412bd1b89e2a7602a00f7761f94e51544f2581caeb
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

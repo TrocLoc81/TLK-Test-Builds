@@ -8,7 +8,7 @@ Public distribution repository for TLK technical-feasibility APKs.
 
 **TLK-U1-PoC-003** — recovery build for the PoC 002 IME startup regression.
 
-[Download latest TLK U1 debug APK](https://github.com/TrocLoc81/TLK-Test-Builds/releases/download/tlk-test-latest/TLK-U1-latest-debug.apk)
+[Short download link for U1](https://trocloc81.github.io/TLK-Test-Builds/u/)
 
 - Version: `0.0.3` (versionCode 3)
 - Built: `2026-09-10T05:35:06Z`
@@ -16,19 +16,14 @@ Public distribution repository for TLK technical-feasibility APKs.
 
 ### Samsung S23 Ultra / Android phone
 
-**TLK-Phone-PoC-001** — foreground LAN sender with editable text, clipboard read, Send and Android Sharesheet support.
+**TLK-Phone-PoC-002** — Phone regression build after physical PoC feedback.
 
-[Download latest TLK Phone debug APK](https://github.com/TrocLoc81/TLK-Test-Builds/releases/download/tlk-test-latest/TLK-Phone-latest-debug.apk)
+[Short download link for phone](https://trocloc81.github.io/TLK-Test-Builds/p/)
 
-- Version: `0.0.1` (versionCode 1)
-- Built as part of milestone: `2026-09-10T05:35:06Z`
-- SHA-256: `03adff6f2a0e18931ab4aabe7404e349256ea59b77e5cfda45ceb0510cd04e05`
-
-## Test order
-
-1. Install U1 PoC 003 directly over PoC 002 without uninstalling, clearing data, disabling TLK, or changing the selected IME.
-2. Confirm the local U1 keyboard appears and local keys work.
-3. Only after the local/offline gate passes, install the Phone PoC and begin LAN testing.
-4. If U1 is not ready, keep the payload on the phone and resend manually after refocusing the editor.
+- Persists U1 IP and port across app reopen and Share → TLK.
+- Places READ CLIPBOARD / SEND TO U1 / CLEAR above the payload editor.
+- Version: `0.0.2` (versionCode 2)
+- Built: `2026-09-10T13:04:02Z`
+- SHA-256: `8f51ecc3439f03549cbeb9412bd1b89e2a7602a00f7761f94e51544f2581caeb`
 
 These are technical-feasibility builds, not production releases.
