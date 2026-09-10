@@ -18,12 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TAG: tlk-test-latest
-      U1_VERSIONED_APK: downloads/TLK-U1-PoC-003.apk
+      U1_VERSIONED_APK: downloads/TLK-U1-PoC-004.apk
       U1_STABLE_APK: TLK-U1-latest-debug.apk
-      U1_SHA256: dee3c32066e9ec4fa6282b5e6d7c978877f12aaa49485f4b81798cb109c0ebd5
-      PHONE_VERSIONED_APK: downloads/TLK-Phone-PoC-003.apk
+      U1_SHA256: 4b7c53ff3b6267afa3dde28e00543f1328eed416b972023f7a612675c7082677
+      PHONE_VERSIONED_APK: downloads/TLK-Phone-PoC-004.apk
       PHONE_STABLE_APK: TLK-Phone-latest-debug.apk
-      PHONE_SHA256: 358fa399972ac8ab861ee1ff5afa03ed69d702922376b08941f54b76416f2b0d
+      PHONE_SHA256: d4935bdb02c60d199968f8f9cee206e1eec7a1ce4ee4b3ef7886470d74e54767
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

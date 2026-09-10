@@ -1,22 +1,32 @@
 # TLK Sprint 2 test builds
 
-## Dangbei U1 — TLK-U1-PoC-003
+## Dangbei U1 — TLK-U1-PoC-004
 
-- Version: `0.0.3` (3)
-- SHA-256: `dee3c32066e9ec4fa6282b5e6d7c978877f12aaa49485f4b81798cb109c0ebd5`
+Bluetooth Classic RFCOMM transport feasibility build.
 
-## Android phone — TLK-Phone-PoC-003
+- Retains the proven local IME and LAN listener.
+- Adds secure RFCOMM service UUID `9d734f61-653b-4b0c-9a22-6cf5df2c6f4a`.
+- Bluetooth init/listen/accept runs outside IME lifecycle/UI callbacks.
+- Bluetooth failure is contained; local keys and LAN remain independent.
+- Listener can restart at a keyboard-show lifecycle point after Bluetooth off/on or listener failure.
+- Package/service/signing identity retained for an in-place update over U1 PoC 003.
+- Version: `0.0.4` (4)
+- Built: `2026-09-10T14:27:44Z`
+- SHA-256: `4b7c53ff3b6267afa3dde28e00543f1328eed416b972023f7a612675c7082677`
 
-Risk-based feasibility build implementing A's approved connection/send policy.
+## Android phone — TLK-Phone-PoC-004
 
-- Normal app open probes the saved U1 endpoint and reports readiness without committing retained text.
-- Share → TLK is treated as an explicit send action and attempts one commit when U1 is READY.
-- NO_ACTIVE_EDITOR or connection failure retains the payload; there is no automatic retry or future insertion.
-- Manual SEND TO U1, foreground clipboard, endpoint persistence, and keyboard-safe action placement remain.
-- ACTION_SEND lifecycle guard prevents the same share intent from committing twice after Activity recreation.
-- Package/signing identity retained for an in-place update over Phone PoC 001/002.
-- Version: `0.0.3` (3)
-- Built: `2026-09-10T13:35:32Z`
-- SHA-256: `358fa399972ac8ab861ee1ff5afa03ed69d702922376b08941f54b76416f2b0d`
+Selectable LAN / Bluetooth Classic RFCOMM feasibility sender.
 
-Kha risk-based build/static validation: PASS. Physical S23U/U1 acceptance: pending.
+- Uses the list of devices already paired in Android Settings; no final pairing UX.
+- Requests `BLUETOOTH_CONNECT` / Nearby devices permission on Android 12+.
+- Persists selected transport and Bluetooth device.
+- Shares the existing UTF-8 protocol and editor-session safety semantics with LAN.
+- Keeps one-shot Share → TLK, manual Send, clipboard, NO_ACTIVE_EDITOR retention and no automatic retry.
+- RFCOMM connect watchdog closes a stalled attempt after 8 seconds.
+- Package/signing identity retained for an in-place update over Phone PoC 003.
+- Version: `0.0.4` (4)
+- Built: `2026-09-10T14:27:44Z`
+- SHA-256: `d4935bdb02c60d199968f8f9cee206e1eec7a1ce4ee4b3ef7886470d74e54767`
+
+Kha risk-based build/static validation: PASS. Physical S23U/U1 RFCOMM acceptance: pending.
